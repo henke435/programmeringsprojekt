@@ -4,16 +4,17 @@ const SCREENWIDTH = innerWidth;
 const SCREENHEIGHT = innerHeight;
 let gameCanvas = document.getElementById("gameCanvas");
 let c = gameCanvas.getContext("2d"); // Drawing object
-gameCanvas.height = SCREENHEIGHT / 2;
-gameCanvas.width = SCREENWIDTH / 2;
+gameCanvas.height = 500;
+gameCanvas.width = 600;
 // -------------------------------------
 // Player variables
-let playerX = 100;
-let playerY = 100;
-let playerWidth = 10;
-let playerHeight = 10;
-let dx = 2;
-let dy = 2;
+let playerX = 50;
+let playerY = 50;
+let playerWidth = 30;
+let playerHeight = 30;
+let dx = 0;
+let dy = 5;
+let playerImg = document.getElementById("Player1");
 
 let directions = {
   left: false,
@@ -26,17 +27,12 @@ let directions = {
 document.addEventListener("keydown", (e) => {
   switch (e.key) {
     case "ArrowLeft":
-      directions.left = true;
+      directions.left = false;
       break;
     case "ArrowRight":
-      directions.right = true;
+      directions.right = false;
       break;
-    case "ArrowUp":
-      directions.up = true;
-      break;
-    case "ArrowDown":
-      directions.down = true;
-      break;
+
     default:
       break;
   }
@@ -50,12 +46,7 @@ document.addEventListener("keyup", (e) => {
     case "ArrowRight":
       directions.right = false;
       break;
-    case "ArrowUp":
-      directions.up = false;
-      break;
-    case "ArrowDown":
-      directions.down = false;
-      break;
+
     default:
       break;
   }
@@ -66,23 +57,14 @@ function animate() {
   requestAnimationFrame(animate); // Run gameloop recursively
   c.clearRect(0, 0, gameCanvas.width, gameCanvas.height); // Clear screen
 
-  c.fillRect(playerX, playerY, playerWidth, playerHeight); // Draw player
-
-  if (directions.right) {
-    playerX += dx;
+  c.drawImage(playerImg ,playerX, playerY, playerWidth, playerHeight); // Draw player
+  if (directions.left){
+    
   }
 
-  if (directions.left) {
-    playerX -= dx;
-  }
+  playerX += dx;
+  playerY -= dy;
 
-  if (directions.up) {
-    playerY -= dy;
-  }
-
-  if (directions.down) {
-    playerY += dy;
-  }
 }
 // -------------------------------------
 // ------------ Start game ------------

@@ -4,4 +4,8 @@ body {
 
 canvas {
   border: 2px solid black;
+  background-image: url("background.jfif");
+}
+#Player1 {
+  display: none;
 }
